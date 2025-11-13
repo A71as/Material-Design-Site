@@ -13,25 +13,6 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v4
-      
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '18'
-        cache: 'npm'
-        
-    - name: Install dependencies
-      run: npm ci --only=dev
-      
-    - name: Validate HTML
-      run: |
-        echo "Validating HTML structure..."
-        # HTML validation would go here
-        
-    - name: Run Lighthouse CI
-      run: |
-        echo "Running Lighthouse audit..."
-        # Lighthouse CI would run here
         
     - name: Deploy to GitHub Pages
       if: github.ref == 'refs/heads/main'
