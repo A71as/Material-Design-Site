@@ -339,15 +339,15 @@
                     <h4>Buttons & Actions</h4>
                     <div class="component-demo-grid">
                         <div class="demo-item">
-                            <button class="btn btn-raised" onclick="showSnackbar('Raised button pressed!')">Raised Button</button>
+                            <button class="btn btn-raised demo-raised-btn">Raised Button</button>
                             <p class="demo-label">Raised Button</p>
                         </div>
                         <div class="demo-item">
-                            <button class="btn btn-outlined" onclick="showSnackbar('Outlined button pressed!')">Outlined Button</button>
+                            <button class="btn btn-outlined demo-outlined-btn">Outlined Button</button>
                             <p class="demo-label">Outlined Button</p>
                         </div>
                         <div class="demo-item">
-                            <button class="demo-fab" style="width: 56px; height: 56px; border-radius: 50%; background: var(--md-secondary); border: none; color: var(--md-on-secondary); box-shadow: var(--md-elevation-6); cursor: pointer;" onclick="showSnackbar('FAB pressed!')">
+                            <button class="demo-fab demo-fab-btn" style="width: 56px; height: 56px; border-radius: 50%; background: var(--md-secondary); border: none; color: var(--md-on-secondary); box-shadow: var(--md-elevation-6); cursor: pointer;">
                                 <span class="material-icons">add</span>
                             </button>
                             <p class="demo-label">Floating Action Button</p>
@@ -359,7 +359,7 @@
                     <h4>Cards & Surfaces</h4>
                     <div class="component-demo-grid">
                         <div class="demo-item">
-                            <div class="demo-card-mini" style="padding: 16px; box-shadow: var(--md-elevation-1); border-radius: 4px; background: var(--md-surface); cursor: pointer;" onclick="this.style.boxShadow='var(--md-elevation-4)'; setTimeout(()=>this.style.boxShadow='var(--md-elevation-1)', 200)">
+                            <div class="demo-card-mini" style="padding: 16px; box-shadow: var(--md-elevation-1); border-radius: 4px; background: var(--md-surface); cursor: pointer;">
                                 <h5 style="margin: 0 0 8px 0; font-size: 14px;">Card Title</h5>
                                 <p style="margin: 0; font-size: 12px; color: var(--md-on-surface-variant);">Interactive card with elevation</p>
                             </div>
@@ -378,7 +378,7 @@
                     <h4>Navigation Elements</h4>
                     <div class="component-demo-grid">
                         <div class="demo-item">
-                            <div class="demo-nav-item" style="display: flex; align-items: center; padding: 12px; background: var(--md-surface); border-radius: 4px; cursor: pointer; transition: all 0.2s ease;" onclick="this.style.backgroundColor='rgba(98, 0, 238, 0.08)'; setTimeout(()=>this.style.backgroundColor='var(--md-surface)', 200)">
+                            <div class="demo-nav-item" style="display: flex; align-items: center; padding: 12px; background: var(--md-surface); border-radius: 4px; cursor: pointer; transition: all 0.2s ease;">
                                 <span class="material-icons" style="margin-right: 8px; color: var(--md-primary); font-size: 20px;">home</span>
                                 <span style="font-size: 14px;">Nav Item</span>
                             </div>
@@ -726,7 +726,7 @@
                                     <li><strong>Intentional:</strong> Motion serves to focus attention</li>
                                 </ul>
                                 <div class="motion-demo">
-                                    <button class="demo-button" onclick="this.style.transform='scale(1.1)'; setTimeout(()=>this.style.transform='', 200)">Try Motion</button>
+                                    <button class="demo-button demo-motion-btn">Try Motion</button>
                                 </div>
                             `);
                         }
@@ -1138,6 +1138,62 @@
                 showSnackbar('Loading page...', 1000);
             });
         });
+    }
+    
+    /**
+     * Setup event listeners for demo buttons in modals
+     */
+    function setupModalDemoButtons(modal) {
+        // Raised button demo
+        const raisedBtn = modal.querySelector('.demo-raised-btn');
+        if (raisedBtn) {
+            raisedBtn.addEventListener('click', () => showSnackbar('Raised button pressed!'));
+        }
+        
+        // Outlined button demo
+        const outlinedBtn = modal.querySelector('.demo-outlined-btn');
+        if (outlinedBtn) {
+            outlinedBtn.addEventListener('click', () => showSnackbar('Outlined button pressed!'));
+        }
+        
+        // FAB demo
+        const fabBtn = modal.querySelector('.demo-fab-btn');
+        if (fabBtn) {
+            fabBtn.addEventListener('click', () => showSnackbar('FAB pressed!'));
+        }
+        
+        // Card demo
+        const cardDemo = modal.querySelector('.demo-card-mini');
+        if (cardDemo) {
+            cardDemo.addEventListener('click', function() {
+                this.style.boxShadow = 'var(--md-elevation-4)';
+                setTimeout(() => {
+                    this.style.boxShadow = 'var(--md-elevation-1)';
+                }, 200);
+            });
+        }
+        
+        // Nav item demo
+        const navDemo = modal.querySelector('.demo-nav-item');
+        if (navDemo) {
+            navDemo.addEventListener('click', function() {
+                this.style.backgroundColor = 'rgba(98, 0, 238, 0.08)';
+                setTimeout(() => {
+                    this.style.backgroundColor = 'var(--md-surface)';
+                }, 200);
+            });
+        }
+        
+        // Motion button demo
+        const motionBtn = modal.querySelector('.demo-motion-btn');
+        if (motionBtn) {
+            motionBtn.addEventListener('click', function() {
+                this.style.transform = 'scale(1.1)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 200);
+            });
+        }
     }
     
     /**
@@ -1652,6 +1708,9 @@
         }
         
         document.body.appendChild(modal);
+        
+        // Add event listeners for demo buttons
+        setupModalDemoButtons(modal);
         
         // Handle closing
         const closeModal = () => {
