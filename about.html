@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Material Design - Swiss Design Gallery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        /* Material Design CSS Variables */
+        :root {
+            --md-unit: 8px;
+            --md-primary: #6200EE;
+            --md-primary-variant: #3700B3;
+            --md-secondary: #03DAC6;
+            --md-secondary-variant: #018786;
+            --md-background: #FAFAFA;
+            --md-surface: #FFFFFF;
+            --md-error: #B00020;
+            --md-on-primary: #FFFFFF;
+            --md-on-secondary: #000000;
+            --md-on-background: #000000;
+            --md-on-surface: #000000;
+            --md-elevation-1: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12);
+            --md-elevation-4: 0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12);
+            --md-elevation-6: 0px 3px 5px -1px rgba(0,0,0,0.2), 0px 6px 10px 0px rgba(0,0,0,0.14), 0px 1px 18px 0px rgba(0,0,0,0.12);
+            --md-motion-standard: cubic-bezier(0.4, 0.0, 0.2, 1);
+            --md-motion-duration: 300ms;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--md-background);
+            color: var(--md-on-background);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 calc(var(--md-unit) * 3);
+        }
+        
+        /* Material App Bar */
+        .app-bar {
+            background-color: var(--md-primary);
+            color: var(--md-on-primary);
+            box-shadow: var(--md-elevation-4);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            height: calc(var(--md-unit) * 7);
+            display: flex;
+            align-items: center;
+            padding: 0 calc(var(--md-unit) * 2);
+        }
+        
+        .app-bar a {
+            color: var(--md-on-primary);
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: 500;
+            letter-spacing: 0.15px;
+        }
+        
+        .main-content {
+            margin-top: calc(var(--md-unit) * 7);
+            padding: calc(var(--md-unit) * 3) 0;
+        }
+        
+        .page-header {
+            background: linear-gradient(135deg, var(--md-primary), var(--md-primary-variant));
+            color: var(--md-on-primary);
+            border-radius: 4px;
+            box-shadow: var(--md-elevation-4);
+            padding: calc(var(--md-unit) * 8);
+            margin-bottom: calc(var(--md-unit) * 4);
+            text-align: center;
+        }
+        
+        .page-header h1 {
+            font-size: 60px;
+            font-weight: 300;
+            margin-bottom: calc(var(--md-unit) * 2);
+            letter-spacing: -0.5px;
+        }
+        
+        .page-header .subtitle {
+            font-size: 24px;
+            font-weight: 400;
+            opacity: 0.9;
+            margin-bottom: calc(var(--md-unit) * 3);
+        }
+        
+        .page-header p {
+            font-size: 18px;
+            opacity: 0.8;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Principle Cards */
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: calc(var(--md-unit) * 3);
+            margin-bottom: calc(var(--md-unit) * 6);
+        }
+        
+        .principle-card {
+            background-color: var(--md-surface);
+            border-radius: 4px;
+            box-shadow: var(--md-elevation-1);
+            padding: calc(var(--md-unit) * 4);
+            transition: box-shadow var(--md-motion-duration) var(--md-motion-standard),
+                        transform var(--md-motion-duration) var(--md-motion-standard);
+        }
+        
+        .principle-card:hover {
+            box-shadow: var(--md-elevation-4);
+            transform: translateY(-2px);
+        }
+        
+        .principle-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--md-secondary), var(--md-secondary-variant));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: calc(var(--md-unit) * 3);
+            font-size: 32px;
+            color: var(--md-on-secondary);
+        }
+        
+        .principle-card h2 {
+            font-size: 28px;
+            font-weight: 400;
+            color: var(--md-primary);
+            margin-bottom: calc(var(--md-unit) * 2);
+        }
+        
+        .principle-card p {
+            font-size: 16px;
+            color: rgba(0, 0, 0, 0.7);
+            margin-bottom: calc(var(--md-unit) * 2);
+        }
+        
+        .principle-examples {
+            background-color: rgba(98, 0, 238, 0.05);
+            border-radius: 4px;
+            padding: calc(var(--md-unit) * 2);
+            margin-top: calc(var(--md-unit) * 2);
+        }
+        
+        .principle-examples h4 {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--md-primary);
+            margin-bottom: calc(var(--md-unit) * 1);
+        }
+        
+        .principle-examples ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .principle-examples li {
+            font-size: 14px;
+            color: rgba(0, 0, 0, 0.8);
+            padding: calc(var(--md-unit) * 0.5) 0;
+        }
+        
+        .principle-examples li::before {
+            content: "→";
+            color: var(--md-secondary);
+            font-weight: bold;
+            margin-right: calc(var(--md-unit) * 1);
+        }
+        
+        /* Design System Section */
+        .system-section {
+            background-color: var(--md-surface);
+            border-radius: 4px;
+            box-shadow: var(--md-elevation-1);
+            padding: calc(var(--md-unit) * 6);
+            margin-bottom: calc(var(--md-unit) * 4);
+        }
+        
+        .system-section h2 {
+            font-size: 36px;
+            font-weight: 400;
+            color: var(--md-primary);
+            text-align: center;
+            margin-bottom: calc(var(--md-unit) * 4);
+        }
+        
+        .system-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: calc(var(--md-unit) * 4);
+        }
+        
+        .system-item {
+            text-align: center;
+        }
+        
+        .system-demo {
+            background: var(--md-background);
+            border-radius: 4px;
+            padding: calc(var(--md-unit) * 3);
+            margin-bottom: calc(var(--md-unit) * 2);
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .color-demo {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: calc(var(--md-unit) * 1);
+            width: 100%;
+            height: 80px;
+        }
+        
+        .color-swatch {
+            border-radius: 4px;
+        }
+        
+        .color-primary { background-color: var(--md-primary); }
+        .color-secondary { background-color: var(--md-secondary); }
+        .color-surface { background-color: var(--md-surface); border: 1px solid rgba(0,0,0,0.1); }
+        .color-background { background-color: var(--md-background); border: 1px solid rgba(0,0,0,0.1); }
+        
+        .typography-demo {
+            text-align: left;
+        }
+        
+        .typography-demo h3 {
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: calc(var(--md-unit) * 1);
+        }
+        
+        .typography-demo p {
+            font-size: 16px;
+            margin-bottom: calc(var(--md-unit) * 1);
+        }
+        
+        .typography-demo small {
+            font-size: 14px;
+            color: rgba(0, 0, 0, 0.6);
+        }
+        
+        .elevation-demo {
+            display: flex;
+            gap: calc(var(--md-unit) * 2);
+            align-items: center;
+        }
+        
+        .elevation-item {
+            width: 60px;
+            height: 60px;
+            background-color: var(--md-surface);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .elevation-1 { box-shadow: var(--md-elevation-1); }
+        .elevation-4 { box-shadow: var(--md-elevation-4); }
+        .elevation-6 { box-shadow: var(--md-elevation-6); }
+        
+        .motion-demo {
+            width: 60px;
+            height: 60px;
+            background-color: var(--md-secondary);
+            border-radius: 50%;
+            animation: materialPulse 2s infinite;
+        }
+        
+        @keyframes materialPulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+        
+        .system-item h3 {
+            font-size: 20px;
+            font-weight: 500;
+            color: var(--md-on-surface);
+            margin-bottom: calc(var(--md-unit) * 1);
+        }
+        
+        .system-item p {
+            font-size: 14px;
+            color: rgba(0, 0, 0, 0.6);
+        }
+        
+        /* Swiss Connection Section */
+        .connection-section {
+            background: linear-gradient(135deg, rgba(98, 0, 238, 0.05), rgba(3, 218, 198, 0.05));
+            border-radius: 4px;
+            padding: calc(var(--md-unit) * 6);
+            margin-bottom: calc(var(--md-unit) * 4);
+            text-align: center;
+        }
+        
+        .connection-section h2 {
+            font-size: 36px;
+            font-weight: 400;
+            color: var(--md-primary);
+            margin-bottom: calc(var(--md-unit) * 3);
+        }
+        
+        .connection-comparison {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: calc(var(--md-unit) * 4);
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .comparison-side {
+            background-color: var(--md-surface);
+            border-radius: 4px;
+            padding: calc(var(--md-unit) * 3);
+            box-shadow: var(--md-elevation-1);
+        }
+        
+        .comparison-side h3 {
+            font-size: 24px;
+            font-weight: 500;
+            margin-bottom: calc(var(--md-unit) * 2);
+        }
+        
+        .comparison-side ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .comparison-side li {
+            font-size: 14px;
+            padding: calc(var(--md-unit) * 0.5) 0;
+            color: rgba(0, 0, 0, 0.7);
+        }
+        
+        .comparison-arrow {
+            font-size: 48px;
+            color: var(--md-secondary);
+            font-weight: 300;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 42px;
+            }
+            
+            .page-header .subtitle {
+                font-size: 20px;
+            }
+            
+            .principles-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .system-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .connection-comparison {
+                grid-template-columns: 1fr;
+                gap: calc(var(--md-unit) * 2);
+            }
+            
+            .comparison-arrow {
+                transform: rotate(90deg);
+                font-size: 32px;
+            }
+        }
+        
+        .back-nav {
+            background-color: var(--md-surface);
+            border-radius: 4px;
+            box-shadow: var(--md-elevation-1);
+            padding: calc(var(--md-unit) * 2);
+            text-align: center;
+        }
+        
+        .back-nav a {
+            color: var(--md-primary);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: calc(var(--md-unit) * 1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Material App Bar -->
+    <header class="app-bar">
+        <a href="index.html">← Swiss Design Gallery</a>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Page Header -->
+            <section class="page-header">
+                <h1>Material Design</h1>
+                <p class="subtitle">A design language for the digital age</p>
+                <p>Google's comprehensive design system that combines the rational principles of Swiss design with the innovation of technology, creating interfaces that behave like physical materials in digital space.</p>
+            </section>
+            
+            <!-- Core Principles -->
+            <div class="principles-grid">
+                <article class="principle-card">
+                    <div class="principle-icon">
+                        <span class="material-icons">layers</span>
+                    </div>
+                    <h2>Material Metaphor</h2>
+                    <p>Inspired by the study of paper and ink, Material Design is grounded in tactile reality. Surfaces and edges provide visual cues based on familiar elements from the physical world.</p>
+                    <div class="principle-examples">
+                        <h4>Key Elements:</h4>
+                        <ul>
+                            <li>Surfaces cast shadows and respond to light</li>
+                            <li>Elements behave according to physical properties</li>
+                            <li>Motion reveals spatial relationships</li>
+                            <li>Depth creates hierarchy and focus</li>
+                        </ul>
+                    </div>
+                </article>
+                
+                <article class="principle-card">
+                    <div class="principle-icon">
+                        <span class="material-icons">palette</span>
+                    </div>
+                    <h2>Bold, Graphic, Intentional</h2>
+                    <p>Material Design is guided by print design methods — typography, grids, space, scale, color, and use of imagery — to create environments that communicate and guide users through interfaces.</p>
+                    <div class="principle-examples">
+                        <h4>Design Elements:</h4>
+                        <ul>
+                            <li>Deliberate color choices that create hierarchy</li>
+                            <li>Roboto typography for optimal readability</li>
+                            <li>Imagery that supports content meaningfully</li>
+                            <li>Scale and proportion based on 8dp grid system</li>
+                        </ul>
+                    </div>
+                </article>
+                
+                <article class="principle-card">
+                    <div class="principle-icon">
+                        <span class="material-icons">animation</span>
+                    </div>
+                    <h2>Motion Provides Meaning</h2>
+                    <p>Motion respects and reinforces the user as the prime mover. All action takes place in a single environment. Objects are presented to the user without breaking the continuity of experience.</p>
+                    <div class="principle-examples">
+                        <h4>Motion Principles:</h4>
+                        <ul>
+                            <li>Transitions guide attention and maintain context</li>
+                            <li>Choreography creates narrative flow</li>
+                            <li>Responsive interaction provides immediate feedback</li>
+                            <li>Material easing curves create natural movement</li>
+                        </ul>
+                    </div>
+                </article>
+            </div>
+            
+            <!-- Design System -->
+            <section class="system-section">
+                <h2>The Material Design System</h2>
+                <div class="system-grid">
+                    <div class="system-item">
+                        <div class="system-demo">
+                            <div class="color-demo">
+                                <div class="color-swatch color-primary"></div>
+                                <div class="color-swatch color-secondary"></div>
+                                <div class="color-swatch color-surface"></div>
+                                <div class="color-swatch color-background"></div>
+                            </div>
+                        </div>
+                        <h3>Color System</h3>
+                        <p>A cohesive color system that supports usability and expresses brand identity through intentional color choices.</p>
+                    </div>
+                    
+                    <div class="system-item">
+                        <div class="system-demo">
+                            <div class="typography-demo">
+                                <h3>Headlines</h3>
+                                <p>Body text that's easy to read and scan efficiently.</p>
+                                <small>Captions and supporting text</small>
+                            </div>
+                        </div>
+                        <h3>Typography</h3>
+                        <p>Roboto font family with systematic type scale that balances content density with reading comfort.</p>
+                    </div>
+                    
+                    <div class="system-item">
+                        <div class="system-demo">
+                            <div class="elevation-demo">
+                                <div class="elevation-item elevation-1">1dp</div>
+                                <div class="elevation-item elevation-4">4dp</div>
+                                <div class="elevation-item elevation-6">6dp</div>
+                            </div>
+                        </div>
+                        <h3>Elevation</h3>
+                        <p>Shadow and light create depth hierarchy, making surfaces and their content more readable and actionable.</p>
+                    </div>
+                    
+                    <div class="system-item">
+                        <div class="system-demo">
+                            <div class="motion-demo"></div>
+                        </div>
+                        <h3>Motion</h3>
+                        <p>Smooth, natural animations guide attention, express relationships, and maintain spatial awareness.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Swiss Design Connection -->
+            <section class="connection-section">
+                <h2>From Swiss Rationalism to Material Design</h2>
+                <div class="connection-comparison">
+                    <div class="comparison-side">
+                        <h3>Swiss Design Legacy</h3>
+                        <ul>
+                            <li>Mathematical grid systems</li>
+                            <li>Systematic typography (Helvetica, Univers)</li>
+                            <li>Objective, rational approach</li>
+                            <li>Minimal decoration</li>
+                            <li>Clear information hierarchy</li>
+                            <li>Universal communication</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="comparison-arrow">→</div>
+                    
+                    <div class="comparison-side">
+                        <h3>Material Design Evolution</h3>
+                        <ul>
+                            <li>8dp responsive grid system</li>
+                            <li>Roboto humanist typography</li>
+                            <li>Scientific approach to digital materials</li>
+                            <li>Purposeful color and motion</li>
+                            <li>Elevation-based hierarchy</li>
+                            <li>Cross-platform consistency</li>
+                        </ul>
+                    </div>
+                </div>
+                <p style="margin-top: calc(var(--md-unit) * 4); font-size: 16px; color: rgba(0, 0, 0, 0.7);">
+                    Material Design preserves Swiss design's systematic rigor while adapting it for interactive, multi-platform digital experiences. The rational foundations remain, enhanced by motion, depth, and the metaphor of physical materials.
+                </p>
+            </section>
+            
+            <!-- Back Navigation -->
+            <nav class="back-nav">
+                <a href="index.html">
+                    <span class="material-icons">arrow_back</span>
+                    Back to Gallery
+                </a>
+            </nav>
+        </div>
+    </main>
+</body>
+</html>

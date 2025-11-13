@@ -1,0 +1,40 @@
+{
+  "name": "material-design-gallery",
+  "version": "1.0.0",
+  "description": "A sophisticated Material Design gallery showcasing the evolution from Swiss design principles",
+  "main": "index.html",
+  "scripts": {
+    "dev": "python -m http.server 8000",
+    "build": "echo 'Build process - optimizing assets'",
+    "serve": "python -m http.server 8000",
+    "clean": "echo 'Cleaning build directory'",
+    "lint": "echo 'Linting CSS and HTML'",
+    "audit": "lighthouse http://localhost:8000 --output html --output-path lighthouse-report.html"
+  },
+  "keywords": [
+    "material-design",
+    "swiss-design",
+    "design-gallery",
+    "ui-ux",
+    "google-design",
+    "design-systems",
+    "accessibility",
+    "responsive-design"
+  ],
+  "author": "Swiss Design Gallery Project",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/username/material-design-gallery.git"
+  },
+  "bugs": {
+    "url": "https://github.com/username/material-design-gallery/issues"
+  },
+  "homepage": "https://username.github.io/material-design-gallery/",
+  "devDependencies": {
+    "lighthouse": "^11.0.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

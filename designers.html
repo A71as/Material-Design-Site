@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Material Design Designers - Swiss Design Gallery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        /* Material Design CSS Variables - Complete System */
+        :root {
+            /* Base unit for 8dp grid system */
+            --md-unit: 8px;
+            
+            /* Spacing tokens - 8dp increments */
+            --md-spacing-xs: calc(var(--md-unit) * 1);  /* 8px */
+            --md-spacing-sm: calc(var(--md-unit) * 2);  /* 16px */
+            --md-spacing-md: calc(var(--md-unit) * 3);  /* 24px */
+            --md-spacing-lg: calc(var(--md-unit) * 4);  /* 32px */
+            --md-spacing-xl: calc(var(--md-unit) * 6);  /* 48px */
+            --md-spacing-xxl: calc(var(--md-unit) * 8); /* 64px */
+            
+            /* Material Design Color System */
+            --md-primary: #6200EE;
+            --md-primary-variant: #3700B3;
+            --md-secondary: #03DAC6;
+            --md-secondary-variant: #018786;
+            --md-background: #FAFAFA;
+            --md-surface: #FFFFFF;
+            --md-error: #B00020;
+            --md-on-primary: #FFFFFF;
+            --md-on-secondary: #000000;
+            --md-on-background: #000000;
+            --md-on-surface: #000000;
+            --md-on-surface-variant: rgba(0, 0, 0, 0.6);
+            
+            /* Typography Scale - Material Design Type System */
+            --md-type-h1-size: 96px; --md-type-h1-weight: 300; --md-type-h1-spacing: -1.5px;
+            --md-type-h2-size: 60px; --md-type-h2-weight: 300; --md-type-h2-spacing: -0.5px;
+            --md-type-h3-size: 48px; --md-type-h3-weight: 400; --md-type-h3-spacing: 0px;
+            --md-type-h4-size: 34px; --md-type-h4-weight: 400; --md-type-h4-spacing: 0.25px;
+            --md-type-h5-size: 24px; --md-type-h5-weight: 400; --md-type-h5-spacing: 0px;
+            --md-type-h6-size: 20px; --md-type-h6-weight: 500; --md-type-h6-spacing: 0.15px;
+            --md-type-subtitle1-size: 16px; --md-type-subtitle1-weight: 400; --md-type-subtitle1-spacing: 0.15px;
+            --md-type-subtitle2-size: 14px; --md-type-subtitle2-weight: 500; --md-type-subtitle2-spacing: 0.1px;
+            --md-type-body1-size: 16px; --md-type-body1-weight: 400; --md-type-body1-spacing: 0.5px;
+            --md-type-body2-size: 14px; --md-type-body2-weight: 400; --md-type-body2-spacing: 0.25px;
+            --md-type-button-size: 14px; --md-type-button-weight: 500; --md-type-button-spacing: 1.25px;
+            --md-type-caption-size: 12px; --md-type-caption-weight: 400; --md-type-caption-spacing: 0.4px;
+            --md-type-overline-size: 10px; --md-type-overline-weight: 400; --md-type-overline-spacing: 1.5px;
+            
+            /* Elevation System */
+            --md-elevation-0: none;
+            --md-elevation-1: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12);
+            --md-elevation-4: 0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12);
+            --md-elevation-6: 0px 3px 5px -1px rgba(0,0,0,0.2), 0px 6px 10px 0px rgba(0,0,0,0.14), 0px 1px 18px 0px rgba(0,0,0,0.12);
+            --md-elevation-12: 0px 7px 8px -4px rgba(0,0,0,0.2), 0px 12px 17px 2px rgba(0,0,0,0.14), 0px 5px 22px 4px rgba(0,0,0,0.12);
+            
+            /* Motion System */
+            --md-motion-standard: cubic-bezier(0.4, 0.0, 0.2, 1);
+            --md-motion-decelerated: cubic-bezier(0.0, 0.0, 0.2, 1);
+            --md-motion-accelerated: cubic-bezier(0.4, 0.0, 1, 1);
+            --md-motion-duration: 300ms;
+            --md-motion-duration-short: 200ms;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--md-background);
+            color: var(--md-on-background);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 calc(var(--md-unit) * 3);
+        }
+        
+        /* Material App Bar */
+        .app-bar {
+            background-color: var(--md-primary);
+            color: var(--md-on-primary);
+            box-shadow: var(--md-elevation-4);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            height: calc(var(--md-unit) * 7);
+            display: flex;
+            align-items: center;
+            padding: 0 calc(var(--md-unit) * 2);
+        }
+        
+        .app-bar a {
+            color: var(--md-on-primary);
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: 500;
+            letter-spacing: 0.15px;
+        }
+        
+        .main-content {
+            margin-top: calc(var(--md-unit) * 7);
+            padding: calc(var(--md-unit) * 3) 0;
+        }
+        
+        .page-header {
+            background-color: var(--md-surface);
+            border-radius: 4px;
+            box-shadow: var(--md-elevation-1);
+            padding: calc(var(--md-unit) * 6);
+            margin-bottom: calc(var(--md-unit) * 4);
+            text-align: center;
+        }
+        
+        .page-header h1 {
+            font-size: 48px;
+            font-weight: 400;
+            color: var(--md-primary);
+            margin-bottom: calc(var(--md-unit) * 2);
+        }
+        
+        .page-header p {
+            font-size: 18px;
+            color: rgba(0, 0, 0, 0.6);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Designer Cards */
+        .designers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: calc(var(--md-unit) * 4);
+            margin-bottom: calc(var(--md-unit) * 4);
+        }
+        
+        .designer-card {
+            background-color: var(--md-surface);
+            border-radius: 4px;
+            box-shadow: var(--md-elevation-1);
+            overflow: hidden;
+            transition: box-shadow var(--md-motion-duration) var(--md-motion-standard),
+                        transform var(--md-motion-duration) var(--md-motion-standard);
+        }
+        
+        .designer-card:hover {
+            box-shadow: var(--md-elevation-4);
+            transform: translateY(-2px);
+        }
+        
+        .designer-header {
+            background: linear-gradient(135deg, var(--md-primary), var(--md-primary-variant));
+            color: var(--md-on-primary);
+            padding: calc(var(--md-unit) * 4);
+            text-align: center;
+        }
+        
+        .designer-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: var(--md-secondary);
+            margin: 0 auto calc(var(--md-unit) * 2) auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            font-weight: 300;
+            color: var(--md-on-secondary);
+        }
+        
+        .designer-header h2 {
+            font-size: 28px;
+            font-weight: 400;
+            margin-bottom: calc(var(--md-unit) * 1);
+        }
+        
+        .designer-title {
+            font-size: 16px;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+        
+        .designer-content {
+            padding: calc(var(--md-unit) * 3);
+        }
+        
+        .designer-bio {
+            font-size: 16px;
+            color: rgba(0, 0, 0, 0.7);
+            margin-bottom: calc(var(--md-unit) * 3);
+        }
+        
+        .contributions {
+            margin-bottom: calc(var(--md-unit) * 3);
+        }
+        
+        .contributions h3 {
+            font-size: 20px;
+            font-weight: 500;
+            color: var(--md-primary);
+            margin-bottom: calc(var(--md-unit) * 2);
+        }
+        
+        .contribution-list {
+            list-style: none;
+        }
+        
+        .contribution-list li {
+            padding: calc(var(--md-unit) * 1) 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            font-size: 14px;
+            color: rgba(0, 0, 0, 0.8);
+        }
+        
+        .contribution-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .quote {
+            background-color: rgba(98, 0, 238, 0.05);
+            border-left: 4px solid var(--md-primary);
+            padding: calc(var(--md-unit) * 2);
+            margin-top: calc(var(--md-unit) * 3);
+            font-style: italic;
+            font-size: 16px;
+            color: rgba(0, 0, 0, 0.8);
+        }
+        
+        .quote-author {
+            margin-top: calc(var(--md-unit) * 1);
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--md-primary);
+            font-style: normal;
+        }
+        
+        /* Team Section */
+        .team-section {
+            background-color: var(--md-surface);
+            border-radius: 4px;
+            box-shadow: var(--md-elevation-1);
+            padding: calc(var(--md-unit) * 4);
+            margin-bottom: calc(var(--md-unit) * 4);
+        }
+        
+        .team-section h2 {
+            font-size: 32px;
+            font-weight: 400;
+            color: var(--md-primary);
+            margin-bottom: calc(var(--md-unit) * 3);
+            text-align: center;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: calc(var(--md-unit) * 3);
+        }
+        
+        .team-member {
+            text-align: center;
+            padding: calc(var(--md-unit) * 2);
+        }
+        
+        .team-member-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--md-secondary), var(--md-secondary-variant));
+            margin: 0 auto calc(var(--md-unit) * 2) auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 300;
+            color: var(--md-on-secondary);
+        }
+        
+        .team-member h3 {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: calc(var(--md-unit) * 1);
+        }
+        
+        .team-member p {
+            font-size: 14px;
+            color: rgba(0, 0, 0, 0.6);
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .designers-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .page-header h1 {
+                font-size: 34px;
+            }
+            
+            .designer-header h2 {
+                font-size: 24px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Breadcrumb Navigation */
+        .breadcrumb-nav {
+            background-color: var(--md-surface);
+            border-radius: 4px;
+            box-shadow: var(--md-elevation-1);
+            padding: var(--md-spacing-sm) var(--md-spacing-md);
+            margin: var(--md-spacing-md) 0;
+            display: flex;
+            align-items: center;
+            font-size: var(--md-type-body2-size);
+            color: var(--md-on-surface-variant);
+        }
+        
+        .breadcrumb-nav a {
+            color: var(--md-primary);
+            text-decoration: none;
+            font-weight: var(--md-type-body2-weight);
+            transition: color var(--md-motion-duration) var(--md-motion-standard);
+        }
+        
+        .breadcrumb-nav a:hover {
+            color: var(--md-primary-variant);
+        }
+        
+        .breadcrumb-separator {
+            margin: 0 var(--md-spacing-xs);
+            color: var(--md-on-surface-variant);
+        }
+        
+        .back-nav {
+            background-color: var(--md-surface);
+            border-radius: 4px;
+            box-shadow: var(--md-elevation-1);
+            padding: calc(var(--md-unit) * 2);
+            text-align: center;
+        }
+        
+        .back-nav a {
+            color: var(--md-primary);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: calc(var(--md-unit) * 1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Material App Bar -->
+    <header class="app-bar">
+        <a href="index.html">← Swiss Design Gallery</a>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Breadcrumb Navigation -->
+            <nav class="breadcrumb-nav">
+                <a href="index.html">Swiss Design Gallery</a>
+                <span class="breadcrumb-separator">›</span>
+                <span>Key Designers & Contributors</span>
+            </nav>
+            <!-- Page Header -->
+            <section class="page-header">
+                <h1>Material Design Pioneers</h1>
+                <p>Meet the visionary designers and leaders who created and shaped Google's Material Design language, transforming how we interact with digital interfaces worldwide.</p>
+            </section>
+            
+            <!-- Key Designers -->
+            <div class="designers-grid">
+                <!-- Matias Duarte -->
+                <article class="designer-card">
+                    <div class="designer-header">
+                        <div class="designer-avatar">MD</div>
+                        <h2>Matias Duarte</h2>
+                        <p class="designer-title">VP of Design, Google</p>
+                    </div>
+                    <div class="designer-content">
+                        <p class="designer-bio">
+                            The visionary behind Material Design, Matias Duarte joined Google in 2010 and led the creation of the design language that unified Google's visual identity. Previously designed Palm's webOS and Android's Honeycomb tablet interface.
+                        </p>
+                        <div class="contributions">
+                            <h3>Key Contributions</h3>
+                            <ul class="contribution-list">
+                                <li>Led Material Design initiative from conception to launch (2014)</li>
+                                <li>Developed "material metaphor" philosophy</li>
+                                <li>Unified Google's design across all products and platforms</li>
+                                <li>Championed elevation and realistic lighting principles</li>
+                                <li>Established Google Design team culture and methodology</li>
+                            </ul>
+                        </div>
+                        <blockquote class="quote">
+                            "We challenged ourselves to create a visual language that synthesizes the classic principles of good design with the innovation and possibility of technology and science."
+                            <div class="quote-author">— Matias Duarte</div>
+                        </blockquote>
+                    </div>
+                </article>
+                
+                <!-- Nicholas Jitkoff -->
+                <article class="designer-card">
+                    <div class="designer-header">
+                        <div class="designer-avatar">NJ</div>
+                        <h2>Nicholas Jitkoff</h2>
+                        <p class="designer-title">Design Lead, Material Design</p>
+                    </div>
+                    <div class="designer-content">
+                        <p class="designer-bio">
+                            Nicholas Jitkoff has been instrumental in evolving Material Design from its initial launch through Material Design 3. He leads the design system team and oversees component development and guidelines.
+                        </p>
+                        <div class="contributions">
+                            <h3>Key Contributions</h3>
+                            <ul class="contribution-list">
+                                <li>Material Design component library architecture</li>
+                                <li>Material Theming system (Material Design 2.0)</li>
+                                <li>Cross-platform consistency standards</li>
+                                <li>Developer tools and design token systems</li>
+                                <li>Material Design 3 and Material You evolution</li>
+                            </ul>
+                        </div>
+                        <blockquote class="quote">
+                            "Material Design is not just about making things look beautiful—it's about creating a systematic approach to design that scales across all of Google's products."
+                            <div class="quote-author">— Nicholas Jitkoff</div>
+                        </blockquote>
+                    </div>
+                </article>
+                
+                <!-- Rachel Been -->
+                <article class="designer-card">
+                    <div class="designer-header">
+                        <div class="designer-avatar">RB</div>
+                        <h2>Rachel Been</h2>
+                        <p class="designer-title">Components Lead, Material Design</p>
+                    </div>
+                    <div class="designer-content">
+                        <p class="designer-bio">
+                            Rachel Been leads the Material Components team, ensuring consistent implementation across web, iOS, and Android platforms. She focuses on accessibility, usability, and developer experience.
+                        </p>
+                        <div class="contributions">
+                            <h3>Key Contributions</h3>
+                            <ul class="contribution-list">
+                                <li>Material Components for Web (MDC-Web) development</li>
+                                <li>Accessibility standards integration</li>
+                                <li>Component API design and documentation</li>
+                                <li>Cross-platform component behavior consistency</li>
+                                <li>Developer community engagement and support</li>
+                            </ul>
+                        </div>
+                        <blockquote class="quote">
+                            "Great design systems empower developers to build accessible, beautiful interfaces without having to become design experts themselves."
+                            <div class="quote-author">— Rachel Been</div>
+                        </blockquote>
+                    </div>
+                </article>
+            </div>
+            
+            <!-- Extended Team -->
+            <section class="team-section">
+                <h2>Material Design Team</h2>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <div class="team-member-avatar">AW</div>
+                        <h3>Andy Wang</h3>
+                        <p>Motion Design Lead</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="team-member-avatar">JS</div>
+                        <h3>Jonas Sickert</h3>
+                        <p>Typography Systems</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="team-member-avatar">MH</div>
+                        <h3>Maria Hernandez</h3>
+                        <p>Color Systems</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="team-member-avatar">DK</div>
+                        <h3>David Kim</h3>
+                        <p>Accessibility Lead</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="team-member-avatar">SC</div>
+                        <h3>Sarah Chen</h3>
+                        <p>Developer Experience</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="team-member-avatar">LR</div>
+                        <h3>Luis Rodriguez</h3>
+                        <p>Platform Integration</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Historical Context -->
+            <section class="team-section">
+                <h2>Historical Influences</h2>
+                <p style="text-align: center; font-size: 16px; color: rgba(0, 0, 0, 0.7); max-width: 800px; margin: 0 auto;">
+                    Material Design draws inspiration from Swiss Design pioneers like Josef Müller-Brockmann and Adrian Frutiger, while incorporating principles from Bauhaus designers like László Moholy-Nagy. The fusion of these rational design traditions with digital innovation created a new visual language for the internet age.
+                </p>
+            </section>
+            
+            <!-- Back Navigation -->
+            <nav class="back-nav">
+                <a href="index.html">
+                    <span class="material-icons">arrow_back</span>
+                    Back to Gallery
+                </a>
+            </nav>
+        </div>
+    </main>
+</body>
+</html>
