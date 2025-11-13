@@ -341,6 +341,12 @@
             });
         });
         
+        // Add card button functionality
+        initializeCardButtons();
+        
+        // Add hero button functionality
+        initializeHeroButtons();
+        
         // Add FAB functionality
         const fab = document.querySelector('.fab');
         if (fab) {
@@ -349,6 +355,277 @@
                 showSnackbar('Feature coming soon! This would add new designs to the gallery.');
             });
         }
+    }
+    
+    /**
+     * Initialize card button functionality
+     */
+    function initializeCardButtons() {
+        const cardButtons = document.querySelectorAll('.card .btn');
+        
+        cardButtons.forEach(button => {
+            const buttonText = button.textContent.trim();
+            const card = button.closest('.card');
+            const cardTitle = card ? card.querySelector('h3').textContent.trim() : '';
+            
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // Add visual feedback
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+                
+                // Handle different button actions based on text and card
+                switch (buttonText) {
+                    case 'Read More':
+                        if (cardTitle.includes('Swiss Design')) {
+                            showDetailModal('Swiss Design Origins', `
+                                <h3>The Foundation of Modern Design</h3>
+                                <p>Swiss design, also known as International Typographic Style, emerged in the 1950s and became the foundation for modern design principles. Key characteristics include:</p>
+                                <ul>
+                                    <li><strong>Grid Systems:</strong> Mathematical precision in layout organization</li>
+                                    <li><strong>Helvetica Typography:</strong> Clean, neutral typefaces</li>
+                                    <li><strong>Asymmetrical Layouts:</strong> Dynamic visual hierarchy</li>
+                                    <li><strong>Minimal Color:</strong> Focus on black, white, and red accents</li>
+                                    <li><strong>Photography:</strong> Objective, documentary-style imagery</li>
+                                </ul>
+                                <p>These principles directly influenced Google's Material Design philosophy, particularly the emphasis on grid systems and clean typography.</p>
+                            `);
+                        }
+                        break;
+                        
+                    case 'Explore':
+                        if (cardTitle.includes('Material Philosophy')) {
+                            showDetailModal('Material Philosophy', `
+                                <h3>Google's Design Language</h3>
+                                <p>Material Design combines the classic principles of good design with innovation and technology. The key principles include:</p>
+                                <ul>
+                                    <li><strong>Material is the metaphor:</strong> A unified system that combines theory, resources, and tools for crafting digital experiences</li>
+                                    <li><strong>Bold, graphic, intentional:</strong> Draw from print design's graphic design elements</li>
+                                    <li><strong>Motion provides meaning:</strong> Motion focuses attention and maintains continuity</li>
+                                </ul>
+                                <div class="demo-elevation">
+                                    <div class="elevation-card" style="box-shadow: var(--md-elevation-1);">Elevation 1dp</div>
+                                    <div class="elevation-card" style="box-shadow: var(--md-elevation-4);">Elevation 4dp</div>
+                                    <div class="elevation-card" style="box-shadow: var(--md-elevation-8);">Elevation 8dp</div>
+                                </div>
+                            `);
+                        }
+                        break;
+                        
+                    case 'View System':
+                        if (cardTitle.includes('Design System')) {
+                            showDetailModal('Design System Components', `
+                                <h3>Material Design System</h3>
+                                <p>The 8dp grid system creates visual consistency and rhythm across all interfaces:</p>
+                                <div class="grid-demo">
+                                    <div class="grid-item">8dp</div>
+                                    <div class="grid-item">16dp</div>
+                                    <div class="grid-item">24dp</div>
+                                    <div class="grid-item">32dp</div>
+                                </div>
+                                <h4>Typography Scale</h4>
+                                <div class="typography-demo">
+                                    <h1 style="font-size: var(--md-type-h1-size); font-weight: var(--md-type-h1-weight);">Headline 1</h1>
+                                    <h2 style="font-size: var(--md-type-h2-size); font-weight: var(--md-type-h2-weight);">Headline 2</h2>
+                                    <p style="font-size: var(--md-type-body1-size);">Body text follows consistent spacing and sizing principles.</p>
+                                </div>
+                            `);
+                        }
+                        break;
+                        
+                    case 'See Examples':
+                        if (cardTitle.includes('Color & Motion')) {
+                            showDetailModal('Color & Motion Examples', `
+                                <h3>Color Palette</h3>
+                                <div class="color-demo">
+                                    <div class="color-swatch" style="background: var(--md-primary);">Primary</div>
+                                    <div class="color-swatch" style="background: var(--md-secondary);">Secondary</div>
+                                    <div class="color-swatch" style="background: var(--md-error);">Error</div>
+                                    <div class="color-swatch" style="background: var(--md-warning);">Warning</div>
+                                    <div class="color-swatch" style="background: var(--md-success);">Success</div>
+                                </div>
+                                <h4>Motion Principles</h4>
+                                <p>Material motion is:</p>
+                                <ul>
+                                    <li><strong>Responsive:</strong> Surface and elements respond to user input</li>
+                                    <li><strong>Natural:</strong> Motion mimics forces in the real world</li>
+                                    <li><strong>Aware:</strong> Elements are aware of user and other elements</li>
+                                    <li><strong>Intentional:</strong> Motion serves to focus attention</li>
+                                </ul>
+                                <div class="motion-demo">
+                                    <button class="demo-button" onclick="this.style.transform='scale(1.1)'; setTimeout(()=>this.style.transform='', 200)">Try Motion</button>
+                                </div>
+                            `);
+                        }
+                        break;
+                        
+                    case 'Browse Components':
+                        if (cardTitle.includes('Components')) {
+                            showDetailModal('Material Components', `
+                                <h3>Component Library</h3>
+                                <p>Material Design provides a comprehensive set of components:</p>
+                                <div class="components-demo">
+                                    <div class="component-example">
+                                        <h4>Buttons</h4>
+                                        <button class="btn btn-raised">Raised Button</button>
+                                        <button class="btn btn-outlined">Outlined Button</button>
+                                    </div>
+                                    <div class="component-example">
+                                        <h4>Cards</h4>
+                                        <div class="demo-card" style="padding: 16px; box-shadow: var(--md-elevation-1); border-radius: 4px; margin: 8px 0;">
+                                            <h5>Card Title</h5>
+                                            <p>Card content with elevation and rounded corners.</p>
+                                        </div>
+                                    </div>
+                                    <div class="component-example">
+                                        <h4>FAB (Floating Action Button)</h4>
+                                        <button class="demo-fab" style="width: 56px; height: 56px; border-radius: 50%; background: var(--md-secondary); border: none; color: var(--md-on-secondary); box-shadow: var(--md-elevation-6);">+</button>
+                                    </div>
+                                </div>
+                            `);
+                        }
+                        break;
+                        
+                    case 'Test Responsive':
+                        if (cardTitle.includes('Responsive')) {
+                            showDetailModal('Responsive Design System', `
+                                <h3>Material Design Breakpoints</h3>
+                                <p>Material Design uses a flexible grid system that adapts to screen size and orientation:</p>
+                                <div class="responsive-demo">
+                                    <div class="breakpoint-demo">
+                                        <h4>Mobile (0-600px)</h4>
+                                        <div class="grid-preview mobile">
+                                            <div class="grid-col"></div>
+                                            <div class="grid-col"></div>
+                                            <div class="grid-col"></div>
+                                            <div class="grid-col"></div>
+                                        </div>
+                                        <p>4-column grid with 16dp margins</p>
+                                    </div>
+                                    <div class="breakpoint-demo">
+                                        <h4>Tablet (601-1024px)</h4>
+                                        <div class="grid-preview tablet">
+                                            <div class="grid-col"></div>
+                                            <div class="grid-col"></div>
+                                            <div class="grid-col"></div>
+                                            <div class="grid-col"></div>
+                                            <div class="grid-col"></div>
+                                            <div class="grid-col"></div>
+                                            <div class="grid-col"></div>
+                                            <div class="grid-col"></div>
+                                        </div>
+                                        <p>8-column grid with 24dp margins</p>
+                                    </div>
+                                    <div class="breakpoint-demo">
+                                        <h4>Desktop (1025px+)</h4>
+                                        <div class="grid-preview desktop">
+                                            <div class="grid-col"></div>
+                                            <div class="grid-col"></div>
+                                            <div class="grid-col"></div>
+                                            <div class="grid-col"></div>
+                                            <div class="grid-col"></div>
+                                            <div class="grid-col"></div>
+                                            <div class="grid-col"></div>
+                                            <div class="grid-col"></div>
+                                            <div class="grid-col"></div>
+                                            <div class="grid-col"></div>
+                                            <div class="grid-col"></div>
+                                            <div class="grid-col"></div>
+                                        </div>
+                                        <p>12-column grid with flexible margins</p>
+                                    </div>
+                                </div>
+                                <p><strong>Tip:</strong> Resize your browser window to see the responsive behavior in action!</p>
+                            `);
+                        }
+                        break;
+                        
+                    default:
+                        showSnackbar(`${buttonText} functionality coming soon!`);
+                        break;
+                }
+                
+                // Announce action to screen readers
+                if (window.announceToScreenReader) {
+                    window.announceToScreenReader(`${buttonText} activated for ${cardTitle}`);
+                }
+            });
+        });
+    }
+    
+    /**
+     * Initialize hero section button functionality
+     */
+    function initializeHeroButtons() {
+        const heroButtons = document.querySelectorAll('.hero .btn');
+        
+        heroButtons.forEach(button => {
+            const buttonText = button.textContent.trim();
+            
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Add visual feedback
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+                
+                switch (buttonText) {
+                    case 'Explore Gallery':
+                        // Smooth scroll to cards grid
+                        const cardsGrid = document.querySelector('.cards-grid');
+                        if (cardsGrid) {
+                            cardsGrid.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                            showSnackbar('Welcome to the gallery! Click any card to explore.');
+                        }
+                        break;
+                        
+                    case 'Learn More':
+                        // Navigate to about page or show info modal
+                        showDetailModal('About This Gallery', `
+                            <h3>Design Evolution Journey</h3>
+                            <p>This gallery showcases the fascinating evolution from Swiss design principles to Google's Material Design language.</p>
+                            
+                            <h4>What You'll Discover</h4>
+                            <ul>
+                                <li><strong>Swiss Design Foundations:</strong> The rational grid systems and typography that started it all</li>
+                                <li><strong>Material Philosophy:</strong> How physical material metaphors influence digital interfaces</li>
+                                <li><strong>Design System:</strong> The comprehensive 8dp grid and component library</li>
+                                <li><strong>Interactive Examples:</strong> Live demonstrations of Material Design principles</li>
+                            </ul>
+                            
+                            <h4>Navigation Tips</h4>
+                            <p>Use keyboard shortcuts for quick navigation:</p>
+                            <ul>
+                                <li><kbd>Alt + H</kbd> - Home</li>
+                                <li><kbd>Alt + T</kbd> - Timeline</li>
+                                <li><kbd>Alt + D</kbd> - Designers</li>
+                                <li><kbd>Alt + A</kbd> - About</li>
+                            </ul>
+                            
+                            <p>Click the keyboard icon in the bottom-right corner for more shortcuts!</p>
+                        `);
+                        break;
+                        
+                    default:
+                        showSnackbar(`${buttonText} functionality activated!`);
+                        break;
+                }
+                
+                // Announce to screen readers
+                if (window.announceToScreenReader) {
+                    window.announceToScreenReader(`${buttonText} button activated`);
+                }
+            });
+        });
     }
     
     /**
@@ -592,6 +869,394 @@
                 showSnackbar('Loading page...', 1000);
             });
         });
+    }
+    
+    /**
+     * Show detailed modal for card content
+     */
+    function showDetailModal(title, content) {
+        // Remove existing modal
+        const existing = document.querySelector('.detail-modal');
+        if (existing) {
+            existing.remove();
+        }
+        
+        const modal = document.createElement('div');
+        modal.className = 'detail-modal';
+        modal.innerHTML = `
+            <div class="modal-backdrop"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>${title}</h2>
+                    <button class="modal-close" aria-label="Close modal">
+                        <span class="material-icons">close</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ${content}
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-outlined modal-close-btn">Close</button>
+                </div>
+            </div>
+        `;
+        
+        // Add modal CSS
+        if (!document.querySelector('style[data-modal]')) {
+            const style = document.createElement('style');
+            style.setAttribute('data-modal', 'true');
+            style.textContent = `
+                .detail-modal {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    z-index: 10000;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 20px;
+                }
+                
+                .modal-backdrop {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background: rgba(0, 0, 0, 0.5);
+                    opacity: 0;
+                    animation: fadeIn 0.3s ease forwards;
+                }
+                
+                .modal-content {
+                    background: var(--md-surface);
+                    border-radius: 8px;
+                    box-shadow: var(--md-elevation-24);
+                    max-width: 600px;
+                    max-height: 80vh;
+                    width: 100%;
+                    position: relative;
+                    display: flex;
+                    flex-direction: column;
+                    transform: scale(0.8);
+                    opacity: 0;
+                    animation: modalIn 0.3s ease forwards;
+                }
+                
+                .modal-header {
+                    padding: 24px 24px 16px;
+                    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                }
+                
+                .modal-header h2 {
+                    margin: 0;
+                    font-size: var(--md-type-h5-size);
+                    font-weight: var(--md-type-h5-weight);
+                    color: var(--md-on-surface);
+                }
+                
+                .modal-close {
+                    background: none;
+                    border: none;
+                    color: var(--md-on-surface-variant);
+                    cursor: pointer;
+                    padding: 8px;
+                    border-radius: 50%;
+                    transition: background-color 0.2s ease;
+                }
+                
+                .modal-close:hover {
+                    background-color: rgba(0, 0, 0, 0.08);
+                }
+                
+                .modal-body {
+                    padding: 16px 24px;
+                    overflow-y: auto;
+                    flex: 1;
+                }
+                
+                .modal-body h3 {
+                    color: var(--md-primary);
+                    margin-bottom: 16px;
+                    font-size: var(--md-type-h6-size);
+                }
+                
+                .modal-body h4 {
+                    margin: 20px 0 12px;
+                    color: var(--md-on-surface);
+                    font-size: var(--md-type-body1-size);
+                    font-weight: 500;
+                }
+                
+                .modal-body ul {
+                    margin: 12px 0;
+                    padding-left: 20px;
+                }
+                
+                .modal-body li {
+                    margin: 8px 0;
+                    line-height: 1.5;
+                }
+                
+                .modal-footer {
+                    padding: 16px 24px 24px;
+                    border-top: 1px solid rgba(0, 0, 0, 0.12);
+                    display: flex;
+                    justify-content: flex-end;
+                }
+                
+                /* Demo styles */
+                .demo-elevation {
+                    display: flex;
+                    gap: 16px;
+                    margin: 16px 0;
+                    flex-wrap: wrap;
+                }
+                
+                .elevation-card {
+                    padding: 16px;
+                    background: var(--md-surface);
+                    border-radius: 4px;
+                    text-align: center;
+                    min-width: 120px;
+                    font-size: 12px;
+                    color: var(--md-on-surface-variant);
+                }
+                
+                .grid-demo {
+                    display: grid;
+                    grid-template-columns: repeat(4, 1fr);
+                    gap: 8px;
+                    margin: 16px 0;
+                }
+                
+                .grid-item {
+                    background: var(--md-primary);
+                    color: var(--md-on-primary);
+                    padding: 12px;
+                    text-align: center;
+                    border-radius: 4px;
+                    font-size: 12px;
+                    font-weight: 500;
+                }
+                
+                .typography-demo {
+                    margin: 16px 0;
+                }
+                
+                .typography-demo h1,
+                .typography-demo h2 {
+                    margin: 8px 0;
+                    line-height: 1.2;
+                }
+                
+                .color-demo {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+                    gap: 12px;
+                    margin: 16px 0;
+                }
+                
+                .color-swatch {
+                    height: 60px;
+                    border-radius: 4px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: white;
+                    font-weight: 500;
+                    font-size: 12px;
+                    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+                }
+                
+                .motion-demo {
+                    text-align: center;
+                    margin: 16px 0;
+                }
+                
+                .demo-button {
+                    background: var(--md-primary);
+                    color: var(--md-on-primary);
+                    border: none;
+                    padding: 12px 24px;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    transition: transform 0.2s ease;
+                }
+                
+                .components-demo {
+                    margin: 16px 0;
+                }
+                
+                .component-example {
+                    margin: 20px 0;
+                    padding: 16px;
+                    border: 1px solid rgba(0, 0, 0, 0.12);
+                    border-radius: 4px;
+                }
+                
+                .component-example h4 {
+                    margin: 0 0 12px 0;
+                    font-size: 14px;
+                    color: var(--md-primary);
+                }
+                
+                .demo-card h5 {
+                    margin: 0 0 8px 0;
+                    font-size: 16px;
+                    font-weight: 500;
+                }
+                
+                .demo-card p {
+                    margin: 0;
+                    font-size: 14px;
+                    color: var(--md-on-surface-variant);
+                }
+                
+                .demo-fab {
+                    font-size: 24px;
+                    font-weight: bold;
+                    cursor: pointer;
+                    transition: all 0.2s ease;
+                }
+                
+                .demo-fab:hover {
+                    transform: scale(1.1);
+                    box-shadow: var(--md-elevation-8);
+                }
+                
+                .responsive-demo {
+                    margin: 16px 0;
+                }
+                
+                .breakpoint-demo {
+                    margin: 20px 0;
+                    padding: 16px;
+                    border: 1px solid rgba(0, 0, 0, 0.12);
+                    border-radius: 4px;
+                }
+                
+                .breakpoint-demo h4 {
+                    margin: 0 0 12px 0;
+                    color: var(--md-primary);
+                    font-size: 14px;
+                }
+                
+                .grid-preview {
+                    display: grid;
+                    gap: 4px;
+                    margin: 12px 0;
+                    min-height: 40px;
+                }
+                
+                .grid-preview.mobile {
+                    grid-template-columns: repeat(4, 1fr);
+                }
+                
+                .grid-preview.tablet {
+                    grid-template-columns: repeat(8, 1fr);
+                }
+                
+                .grid-preview.desktop {
+                    grid-template-columns: repeat(12, 1fr);
+                }
+                
+                .grid-col {
+                    background: var(--md-primary);
+                    min-height: 30px;
+                    border-radius: 2px;
+                }
+                
+                .breakpoint-demo p {
+                    margin: 8px 0 0 0;
+                    font-size: 12px;
+                    color: var(--md-on-surface-variant);
+                }
+                
+                @keyframes fadeIn {
+                    to { opacity: 1; }
+                }
+                
+                @keyframes modalIn {
+                    to { 
+                        transform: scale(1);
+                        opacity: 1;
+                    }
+                }
+                
+                @media (max-width: 600px) {
+                    .detail-modal {
+                        padding: 8px;
+                    }
+                    
+                    .modal-content {
+                        max-height: 95vh;
+                    }
+                    
+                    .modal-header,
+                    .modal-body,
+                    .modal-footer {
+                        padding-left: 16px;
+                        padding-right: 16px;
+                    }
+                    
+                    .demo-elevation,
+                    .color-demo {
+                        grid-template-columns: repeat(2, 1fr);
+                    }
+                    
+                    .grid-demo {
+                        grid-template-columns: repeat(2, 1fr);
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+        
+        document.body.appendChild(modal);
+        
+        // Handle closing
+        const closeModal = () => {
+            modal.style.animation = 'none';
+            modal.querySelector('.modal-backdrop').style.animation = 'fadeIn 0.2s ease reverse';
+            modal.querySelector('.modal-content').style.animation = 'modalIn 0.2s ease reverse';
+            setTimeout(() => {
+                modal.remove();
+            }, 200);
+        };
+        
+        // Close on backdrop click
+        modal.querySelector('.modal-backdrop').addEventListener('click', closeModal);
+        
+        // Close on close button click
+        modal.querySelectorAll('.modal-close, .modal-close-btn').forEach(btn => {
+            btn.addEventListener('click', closeModal);
+        });
+        
+        // Close on Escape key
+        const handleEscape = (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+                document.removeEventListener('keydown', handleEscape);
+            }
+        };
+        document.addEventListener('keydown', handleEscape);
+        
+        // Focus management
+        const firstFocusable = modal.querySelector('.modal-close');
+        if (firstFocusable) {
+            firstFocusable.focus();
+        }
+        
+        // Announce to screen readers
+        if (window.announceToScreenReader) {
+            window.announceToScreenReader(`${title} modal opened`);
+        }
     }
     
     /**
