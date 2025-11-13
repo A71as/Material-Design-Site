@@ -276,10 +276,8 @@
      */
     function setupInternalNavigation() {
         const internalLinks = document.querySelectorAll('.nav-item.internal');
-        console.log('Internal navigation links found:', internalLinks.length);
         
         internalLinks.forEach(link => {
-            console.log('Adding event listener to:', link.textContent.trim());
             link.addEventListener('click', function(e) {
                 e.preventDefault();
                 const href = this.getAttribute('href');
@@ -291,15 +289,11 @@
                     this.style.backgroundColor = '';
                 }, 300);
                 
-                console.log('Internal link clicked:', href, linkText);
-                
                 switch (href) {
                     case '#components':
-                        console.log('Calling showComponentLibrary');
                         showComponentLibrary();
                         break;
                     case '#collaboration':
-                        console.log('Calling showAICollaborationStory');
                         showAICollaborationStory();
                         break;
                     default:
@@ -329,7 +323,6 @@
      * Show interactive component library
      */
     function showComponentLibrary() {
-        console.log('showComponentLibrary called');
         showDetailModal('Material Design Component Library', `
             <h3>Interactive Component Showcase</h3>
             <p>Explore the complete Material Design component system used in this gallery:</p>
@@ -447,7 +440,6 @@
      * Show AI collaboration story
      */
     function showAICollaborationStory() {
-        console.log('showAICollaborationStory called');
         showDetailModal('AI Collaboration Story', `
             <h3>Human-AI Partnership in Material Design</h3>
             <p>This gallery represents a successful collaboration between human creative vision and AI systematic implementation.</p>
@@ -1200,7 +1192,6 @@
      * Show detailed modal for card content
      */
     function showDetailModal(title, content) {
-        console.log('showDetailModal called with title:', title);
         // Remove existing modal
         const existing = document.querySelector('.detail-modal');
         if (existing) {
