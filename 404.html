@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Page not found - Swiss Design Gallery Material Design">
+    <title>Page Not Found - Swiss Design Gallery</title>
+    
+    <!-- Material Design Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <style>
+        /* Material Design Variables */
+        :root {
+            --md-unit: 8px;
+            --md-spacing-xs: calc(var(--md-unit) * 1);
+            --md-spacing-sm: calc(var(--md-unit) * 2);
+            --md-spacing-md: calc(var(--md-unit) * 3);
+            --md-spacing-lg: calc(var(--md-unit) * 4);
+            --md-spacing-xl: calc(var(--md-unit) * 6);
+            
+            --md-primary: #6200EE;
+            --md-primary-variant: #3700B3;
+            --md-secondary: #03DAC6;
+            --md-on-primary: #FFFFFF;
+            --md-surface: #FFFFFF;
+            --md-on-surface: #1C1B1F;
+            --md-on-surface-variant: #49454F;
+            --md-error: #B3261E;
+            --md-on-error: #FFFFFF;
+            
+            --md-elevation-1: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12);
+            --md-elevation-4: 0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12);
+            
+            --md-motion-duration: 0.3s;
+            --md-motion-standard: cubic-bezier(0.4, 0.0, 0.2, 1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #F7F2FA;
+            color: var(--md-on-surface);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .error-container {
+            text-align: center;
+            max-width: 600px;
+            padding: var(--md-spacing-xl);
+            background-color: var(--md-surface);
+            border-radius: 16px;
+            box-shadow: var(--md-elevation-4);
+            margin: var(--md-spacing-md);
+        }
+        
+        .error-icon {
+            font-size: 96px;
+            color: var(--md-error);
+            margin-bottom: var(--md-spacing-md);
+        }
+        
+        .error-code {
+            font-size: 72px;
+            font-weight: 700;
+            color: var(--md-primary);
+            margin-bottom: var(--md-spacing-sm);
+            letter-spacing: -2px;
+        }
+        
+        .error-title {
+            font-size: 32px;
+            font-weight: 500;
+            color: var(--md-on-surface);
+            margin-bottom: var(--md-spacing-sm);
+        }
+        
+        .error-description {
+            font-size: 16px;
+            color: var(--md-on-surface-variant);
+            margin-bottom: var(--md-spacing-xl);
+            line-height: 1.5;
+        }
+        
+        .navigation-options {
+            display: flex;
+            flex-direction: column;
+            gap: var(--md-spacing-md);
+            align-items: center;
+        }
+        
+        .nav-button {
+            display: flex;
+            align-items: center;
+            gap: var(--md-spacing-xs);
+            padding: var(--md-spacing-md) var(--md-spacing-lg);
+            background-color: var(--md-primary);
+            color: var(--md-on-primary);
+            text-decoration: none;
+            border-radius: 24px;
+            font-weight: 500;
+            font-size: 16px;
+            transition: all var(--md-motion-duration) var(--md-motion-standard);
+            box-shadow: var(--md-elevation-1);
+            min-width: 200px;
+            justify-content: center;
+        }
+        
+        .nav-button:hover {
+            background-color: var(--md-primary-variant);
+            box-shadow: var(--md-elevation-4);
+            transform: translateY(-2px);
+        }
+        
+        .nav-button.secondary {
+            background-color: transparent;
+            color: var(--md-primary);
+            border: 2px solid var(--md-primary);
+        }
+        
+        .nav-button.secondary:hover {
+            background-color: rgba(98, 0, 238, 0.08);
+            transform: translateY(-1px);
+        }
+        
+        .suggestions {
+            margin-top: var(--md-spacing-xl);
+            padding-top: var(--md-spacing-lg);
+            border-top: 1px solid rgba(0, 0, 0, 0.12);
+        }
+        
+        .suggestions h3 {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: var(--md-spacing-sm);
+            color: var(--md-on-surface);
+        }
+        
+        .suggestion-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--md-spacing-sm);
+            justify-content: center;
+        }
+        
+        .suggestion-link {
+            padding: var(--md-spacing-xs) var(--md-spacing-sm);
+            background-color: rgba(98, 0, 238, 0.08);
+            color: var(--md-primary);
+            text-decoration: none;
+            border-radius: 16px;
+            font-size: 14px;
+            transition: all var(--md-motion-duration) var(--md-motion-standard);
+        }
+        
+        .suggestion-link:hover {
+            background-color: rgba(98, 0, 238, 0.16);
+            transform: translateY(-1px);
+        }
+        
+        /* Auto-redirect notification */
+        .redirect-notice {
+            position: fixed;
+            bottom: var(--md-spacing-lg);
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--md-secondary);
+            color: var(--md-on-primary);
+            padding: var(--md-spacing-sm) var(--md-spacing-lg);
+            border-radius: 24px;
+            box-shadow: var(--md-elevation-4);
+            font-size: 14px;
+            font-weight: 500;
+            opacity: 0;
+            animation: fadeInOut 3s ease-in-out;
+        }
+        
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0; transform: translateX(-50%) translateY(20px); }
+            20%, 80% { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+        
+        @media (max-width: 600px) {
+            .error-container {
+                padding: var(--md-spacing-lg);
+            }
+            
+            .error-code {
+                font-size: 48px;
+            }
+            
+            .error-title {
+                font-size: 24px;
+            }
+            
+            .navigation-options {
+                flex-direction: column;
+            }
+            
+            .nav-button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <span class="material-icons error-icon">error_outline</span>
+        <div class="error-code">404</div>
+        <h1 class="error-title">Page Not Found</h1>
+        <p class="error-description">
+            The page you're looking for doesn't exist or has been moved. 
+            Don't worry – let's get you back to exploring our Material Design gallery!
+        </p>
+        
+        <div class="navigation-options">
+            <a href="index.html" class="nav-button">
+                <span class="material-icons">home</span>
+                Back to Gallery Home
+            </a>
+            <a href="javascript:history.back()" class="nav-button secondary">
+                <span class="material-icons">arrow_back</span>
+                Go Back
+            </a>
+        </div>
+        
+        <div class="suggestions">
+            <h3>Popular Pages</h3>
+            <div class="suggestion-links">
+                <a href="timeline.html" class="suggestion-link">Timeline</a>
+                <a href="designers.html" class="suggestion-link">Designers</a>
+                <a href="about.html" class="suggestion-link">About</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Auto-redirect notification -->
+    <div class="redirect-notice" id="redirectNotice">
+        Redirecting to homepage in <span id="countdown">5</span> seconds...
+    </div>
+    
+    <script>
+        // Auto-redirect to homepage after 10 seconds
+        let countdown = 5;
+        const redirectNotice = document.getElementById('redirectNotice');
+        const countdownElement = document.getElementById('countdown');
+        
+        // Show the redirect notice after 2 seconds
+        setTimeout(() => {
+            redirectNotice.style.display = 'block';
+            redirectNotice.style.animation = 'fadeInOut 6s ease-in-out';
+        }, 2000);
+        
+        // Start countdown
+        setTimeout(() => {
+            const countdownInterval = setInterval(() => {
+                countdown--;
+                countdownElement.textContent = countdown;
+                
+                if (countdown <= 0) {
+                    clearInterval(countdownInterval);
+                    window.location.href = 'index.html';
+                }
+            }, 1000);
+        }, 3000);
+        
+        // Add some interactive polish
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add subtle animations to buttons
+            const buttons = document.querySelectorAll('.nav-button, .suggestion-link');
+            buttons.forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-2px) scale(1.02)';
+                });
+                
+                button.addEventListener('mouseleave', function() {
+                    this.style.transform = '';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

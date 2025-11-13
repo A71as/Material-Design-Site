@@ -395,6 +395,98 @@
             }
         }
         
+        /* Enhanced Breadcrumb Navigation */
+        .breadcrumb-nav {
+            background-color: var(--md-surface);
+            border-radius: 8px;
+            box-shadow: var(--md-elevation-1);
+            padding: var(--md-spacing-sm) var(--md-spacing-md);
+            margin: var(--md-spacing-md) 0;
+            display: flex;
+            align-items: center;
+            font-size: var(--md-type-body2-size);
+            color: var(--md-on-surface-variant);
+        }
+        
+        .breadcrumb-item {
+            color: var(--md-primary);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: var(--md-spacing-xs);
+            padding: var(--md-spacing-xs);
+            border-radius: 4px;
+            transition: all var(--md-motion-duration) var(--md-motion-standard);
+        }
+        
+        .breadcrumb-item:hover {
+            color: var(--md-primary-variant);
+            background-color: rgba(98, 0, 238, 0.08);
+        }
+        
+        .breadcrumb-item .material-icons {
+            font-size: 18px;
+        }
+        
+        .breadcrumb-current {
+            font-weight: 500;
+            color: var(--md-on-surface);
+        }
+        
+        .breadcrumb-separator {
+            margin: 0 var(--md-spacing-xs);
+            color: var(--md-on-surface-variant);
+            font-weight: 300;
+        }
+        
+        /* Page Navigation */
+        .page-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: var(--md-spacing-lg) 0;
+            padding: var(--md-spacing-md);
+            background-color: var(--md-surface);
+            border-radius: 8px;
+            box-shadow: var(--md-elevation-1);
+        }
+        
+        .nav-center {
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-button, .nav-link {
+            display: flex;
+            align-items: center;
+            gap: var(--md-spacing-xs);
+            padding: var(--md-spacing-sm) var(--md-spacing-md);
+            color: var(--md-primary);
+            text-decoration: none;
+            font-weight: 500;
+            border-radius: 4px;
+            transition: all var(--md-motion-duration) var(--md-motion-standard);
+        }
+        
+        .nav-button:hover, .nav-link:hover {
+            background-color: rgba(98, 0, 238, 0.08);
+            color: var(--md-primary-variant);
+        }
+        
+        .nav-button.prev:hover {
+            transform: translateX(-2px);
+        }
+        
+        .nav-button.next:hover {
+            transform: translateX(2px);
+        }
+        
+        .nav-link.home {
+            background-color: rgba(98, 0, 238, 0.04);
+            border: 1px solid rgba(98, 0, 238, 0.12);
+        }
+
         .back-nav {
             background-color: var(--md-surface);
             border-radius: 4px;
@@ -422,6 +514,34 @@
     <!-- Main Content -->
     <main class="main-content">
         <div class="container">
+            <!-- Enhanced Navigation -->
+            <nav class="breadcrumb-nav" aria-label="Breadcrumb navigation">
+                <a href="index.html" class="breadcrumb-item">
+                    <span class="material-icons" aria-hidden="true">home</span>
+                    Swiss Design Gallery
+                </a>
+                <span class="breadcrumb-separator" aria-hidden="true">›</span>
+                <span class="breadcrumb-current" aria-current="page">Design Principles</span>
+            </nav>
+            
+            <!-- Page Navigation -->
+            <nav class="page-navigation" aria-label="Page navigation">
+                <a href="designers.html" class="nav-button prev">
+                    <span class="material-icons" aria-hidden="true">arrow_back</span>
+                    Designers
+                </a>
+                <div class="nav-center">
+                    <a href="index.html" class="nav-link home">
+                        <span class="material-icons" aria-hidden="true">home</span>
+                        Gallery Home
+                    </a>
+                </div>
+                <a href="timeline.html" class="nav-button next">
+                    Timeline
+                    <span class="material-icons" aria-hidden="true">arrow_forward</span>
+                </a>
+            </nav>
+            
             <!-- Page Header -->
             <section class="page-header">
                 <h1>Material Design</h1>
@@ -578,5 +698,8 @@
             </nav>
         </div>
     </main>
+    
+    <!-- Enhanced Navigation & Functionality -->
+    <script src="js/navigation.js"></script>
 </body>
 </html>

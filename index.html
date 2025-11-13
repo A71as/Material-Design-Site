@@ -312,28 +312,61 @@
             box-shadow: var(--md-elevation-12), 0 0 0 3px rgba(3, 218, 198, 0.3);
         }
         
-        /* Material Design Navigation */
+        /* Enhanced Material Design Navigation */
         .navigation {
             background-color: var(--md-surface);
-            box-shadow: var(--md-elevation-1);
-            border-radius: 4px;
-            margin: calc(var(--md-unit) * 3) 0;
+            box-shadow: var(--md-elevation-2);
+            border-radius: 8px;
+            margin: calc(var(--md-unit) * 4) 0;
             overflow: hidden;
         }
         
+        .nav-header {
+            padding: var(--md-spacing-md) var(--md-spacing-sm);
+            background-color: var(--md-primary);
+            color: var(--md-on-primary);
+        }
+        
+        .nav-header h3 {
+            margin: 0;
+            font-size: var(--md-type-h6-size);
+            font-weight: var(--md-type-h6-weight);
+            letter-spacing: var(--md-type-h6-spacing);
+        }
+        
         .nav-item {
-            display: block;
-            padding: var(--md-spacing-sm);
+            display: flex;
+            align-items: center;
+            padding: var(--md-spacing-md) var(--md-spacing-sm);
             color: var(--md-on-surface);
             text-decoration: none;
-            font-weight: var(--md-type-body1-weight);
-            font-size: var(--md-type-body1-size);
-            letter-spacing: var(--md-type-body1-spacing);
-            transition: background-color var(--md-motion-duration) var(--md-motion-standard),
-                        color var(--md-motion-duration) var(--md-motion-standard);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+            transition: all var(--md-motion-duration) var(--md-motion-standard);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
             position: relative;
-            overflow: hidden;
+            gap: var(--md-spacing-sm);
+        }
+        
+        .nav-item .material-icons {
+            font-size: 24px;
+            color: var(--md-primary);
+            flex-shrink: 0;
+        }
+        
+        .nav-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        
+        .nav-content strong {
+            font-weight: 500;
+            font-size: var(--md-type-body1-size);
+            color: var(--md-on-surface);
+        }
+        
+        .nav-content span {
+            font-size: var(--md-type-caption-size);
+            color: var(--md-on-surface-variant);
         }
         
         .nav-item:last-child {
@@ -342,17 +375,35 @@
         
         .nav-item:hover {
             background-color: rgba(98, 0, 238, 0.08);
-            color: var(--md-primary);
+            transform: translateX(4px);
+        }
+        
+        .nav-item:hover .material-icons {
+            color: var(--md-primary-variant);
+            transform: scale(1.1);
         }
         
         .nav-item:active {
             background-color: rgba(98, 0, 238, 0.12);
+            transform: translateX(2px);
         }
         
         .nav-item:focus {
             outline: none;
             background-color: rgba(98, 0, 238, 0.08);
-            color: var(--md-primary);
+            box-shadow: inset 4px 0 0 var(--md-primary);
+        }
+        
+        /* Internal Navigation */
+        .internal-nav {
+            border-top: 1px solid rgba(0, 0, 0, 0.12);
+            background-color: rgba(0, 0, 0, 0.02);
+        }
+        
+        .nav-item.internal {
+            font-size: var(--md-type-body2-size);
+            padding: var(--md-spacing-sm);
+            border-bottom: none;
         }
         
         /* Responsive Design - Material Breakpoints */
@@ -462,13 +513,46 @@
                 </article>
             </section>
             
-            <!-- Material Navigation -->
+            <!-- Enhanced Material Navigation -->
             <nav class="navigation" aria-label="Main site navigation">
-                <a href="timeline.html" class="nav-item">Timeline: Material Design History</a>
-                <a href="designers.html" class="nav-item">Key Designers & Contributors</a>
-                <a href="about.html" class="nav-item">Design Principles & Guidelines</a>
-                <a href="#components" class="nav-item">Component Library</a>
-                <a href="#collaboration" class="nav-item">AI Collaboration Story</a>
+                <div class="nav-header">
+                    <h3>Explore the Gallery</h3>
+                </div>
+                <div class="nav-items">
+                    <a href="timeline.html" class="nav-item" data-page="timeline">
+                        <span class="material-icons" aria-hidden="true">timeline</span>
+                        <div class="nav-content">
+                            <strong>Timeline</strong>
+                            <span>Material Design History (2014-2025)</span>
+                        </div>
+                    </a>
+                    <a href="designers.html" class="nav-item" data-page="designers">
+                        <span class="material-icons" aria-hidden="true">people</span>
+                        <div class="nav-content">
+                            <strong>Designers</strong>
+                            <span>Key Contributors & Practitioners</span>
+                        </div>
+                    </a>
+                    <a href="about.html" class="nav-item" data-page="about">
+                        <span class="material-icons" aria-hidden="true">info</span>
+                        <div class="nav-content">
+                            <strong>Principles</strong>
+                            <span>Design Guidelines & Philosophy</span>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Internal Navigation -->
+                <div class="internal-nav">
+                    <a href="#components" class="nav-item internal">
+                        <span class="material-icons" aria-hidden="true">widgets</span>
+                        Component Library
+                    </a>
+                    <a href="#collaboration" class="nav-item internal">
+                        <span class="material-icons" aria-hidden="true">psychology</span>
+                        AI Collaboration Story
+                    </a>
+                </div>
             </nav>
         </div>
     </main>
@@ -532,5 +616,8 @@
             document.head.appendChild(style);
         });
     </script>
+    
+    <!-- Enhanced Navigation & Functionality -->
+    <script src="js/navigation.js"></script>
 </body>
 </html>
